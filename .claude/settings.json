@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -c \"import sys,json,os,datetime; d=json.load(sys.stdin); fp=d.get('tool_input',{}).get('file_path',''); fn=os.path.basename(fp); open('edit_log.txt','a').write('['+datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')+'] '+fn+'\\n') if fn else None\""
+          }
+        ]
+      }
+    ]
+  }
+}
